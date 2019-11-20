@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding-top: 0;
+}
+
+.pie{
+    margin: 0;
+    padding:0;
+}
+
+aside .main-sidebar{
+	height: 800px;
+	color: red;
+}
+
+.content-wrapper{
+	min-height: 700px;
+}
+

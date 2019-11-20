@@ -1,0 +1,6 @@
+Cambiar el archhivo .htaccess que está en la carpeta raíz 
+de acuerdo a la ubicación en el servidor
+
+
+
+
