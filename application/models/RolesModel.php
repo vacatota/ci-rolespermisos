@@ -4,7 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class RolesModel extends CI_Model
 {
 
-    public function get_roles()
+    public function getRoles()
     {
         $this->db->select('*');
         $this->db->from('roles');

@@ -20,6 +20,22 @@
     <div class="col-lg-6  col-md-6 col-sm-6 col-xs-12">
         <a href="<?php echo base_url() ?>usuarios/add" class="btn btn-primary btn-flat"><span class="fa fa-plus"></span> Agregar Usuario</a>
     </div><br>
+    <!--Muestra mensajes del resultado de las consultas a Bd -->
+            <?php
+if ($this->session->flashdata('mensaje') != '') {
+    ?>
+             <div   style="width: 50%" class="center-block text-center alert alert-<?php echo $this->session->flashdata('css') ?>">
+              <?php echo $this->session->flashdata('mensaje') ?></div>
+            <?php
+
+    echo "<script>
+      window.onload = function() {
+      reloadPage('usuarios')
+             }
+     </script>";
+}
+?>
+<!--Fin mensajes del resultado de las consultas a Bd -->
     <h1 class="text-center" style="color: #138bc7"><b>LISTADO DE USUARIOS REGISTRADOS</b></h1>
 <div class="row">
                 <div class="table-responsive col-md-12">

@@ -26,14 +26,15 @@ class Usuarios extends CI_Controller
     public function add()
     {
         $data = array(
-            'roles' => $this->RolesModel->get_roles(),
+            'roles' => $this->RolesModel->getRoles(),
         );
         $this->layout->view('/usuarios/add', $data);
     }
 
     public function create()
     {
-        if ($this->form_validation->run('valida_nuevo_usuario')) {
+
+        if ($this->form_validation->run('nuevoUsuario')) {
             $data = $arrayName = array(
                 'nombres'   => $this->input->post('nombres'),
                 'apellidos' => $this->input->post('apellidos'),
@@ -45,12 +46,17 @@ class Usuarios extends CI_Controller
             $lastId = $this->UsuariosModel->save($data);
             if ($lastId) {
                 $this->UsuariosModel->addRol($lastId, $rol);
+                 $this->session->set_flashdata('css', 'success');
+                    $this->session->set_flashdata('mensaje', 'El usuario se ha creado con éxito');
                 redirect(base_url() . "usuarios");
             } else {
-                redirect(base_url() . "usuarios/add");
+                 $this->session->set_flashdata('css', 'danger');
+                    $this->session->set_flashdata('mensaje', 'No se ha creado la usuario, intente nuevamente');
+                redirect(base_url() . "usuarios/list");
             }
         } else {
-            $this->load->view("usuarios/add");
+            
+            $this->layout->view("/usuarios/add");
         }
     }
 

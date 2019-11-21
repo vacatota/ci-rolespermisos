@@ -4,7 +4,7 @@
     <h1>
         Acceso
         <small>sistema</small>
-        <?php echo dirname(__FILE__);?>
+        <?php //echo dirname(__FILE__);?>
       </h1>
     <!-- ####### FIN TITULO DE LA PAGINA ############-->
     <!-- ########### BREADCRUMS ########################-->
