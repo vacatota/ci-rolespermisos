@@ -14,20 +14,20 @@
       </ol>
       <hr style="padding: 0; margin: 0; border-top: solid 2px  #aeb5ba">
      <!-- ########### FIN DE BREADCRUMB ########################-->
-    </section>
 
-  <!-- validacion formulario -->
-<?php $errors = validation_errors('<li>', '</li>'); //helper de nombre "validation_errors"
-if ($errors != "") //si errrors es distinto de vacio, entra a mpstrar lo del if
-{?>
-                        <div class="alert alert-danger">
-                         <ul>
-                        <?php echo $errors; ?>
-                        </ul>
-                        </div>
-                        <?php
-}?>
-  <!-- Fin validacion formulario -->
+     <!-- validacion formulario -->
+   <?php $errors = validation_errors('<li>', '</li>'); //helper de nombre "validation_errors"
+   if ($errors != "") //si errrors es distinto de vacio, entra a mpstrar lo del if
+   {?>
+                           <div class="alert alert-danger">
+                            <ul>
+                           <?php echo $errors; ?>
+                           </ul>
+                           </div>
+                           <?php
+   }?>
+     <!-- Fin validacion formulario -->
+    </section>
 
       <section class="content">
     <h1 style="color: #138bc7"><b>Creación de nuevo rol   </b></h1>
@@ -43,7 +43,7 @@ if ($errors != "") //si errrors es distinto de vacio, entra a mpstrar lo del if
                <div class="form-group">
                   <label for="" class="col-sm-2 control-label text-right">Rol</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="" name="rol">
+                    <input type="text" class="form-control" id="nombre" name="nombre">
                   </div>
                 </div>
                 <div class="form-group">
@@ -53,7 +53,7 @@ if ($errors != "") //si errrors es distinto de vacio, entra a mpstrar lo del if
               </div>
               <!-- /.box-body -->
               <div class="box-footer">
-                <button type="submit" class="btn btn-info pull-right" title="Actualizar unicamente datos de usuario">Guardar</button>
+                <button type="submit" class="btn btn-info pull-right" title="Actualizar un rol">Guardar</button>
               </div>
               <!-- /.box-footer -->
             </form>

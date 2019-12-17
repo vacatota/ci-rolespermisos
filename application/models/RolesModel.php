@@ -13,22 +13,37 @@ class RolesModel extends CI_Model
         return $resultados->result();
     }
 
-    public function get_rol($id_rol)
+    public function getRol($idRol)
     {
-        $this->db->where("id_rol", $id_rol);
+        $this->db->where("id_rol", $idRol);
         $resultado = $this->db->get("roles");
         return $resultado->row();
 
     }
 
-    public function save($data)
+    public function createRol($data)
     {
-        if ($this->db->insert("roles", $data)) {
+      if($this->db->insert("roles", $data)) {
             //return $this->db->insert_id();
             return true;
         } else {
             return false;
         }
+    }
+
+
+    public function getFunciones(){
+      $this->db->select('*');
+      $this->db->from('usuarios u');
+      $this->db->join('rolesUsuarios ru', 'u.id=ru.usuarioId', 'inner');
+      $this->db->join('roles r', 'r.id=ru.rolId', 'inner');
+      //$this->db->where('ru.estado_rol', '1');
+      $this->db->order_by("u.id", "desc");
+      $resultados = $this->db->get();
+     /* echo $this->db->last_query();
+      exit();*/
+      return $resultados->result();
+
     }
 /*Actualiza un rol de la tabla roles*/
     public function update_rol($id_rol, $data)

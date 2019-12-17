@@ -1,5 +1,6 @@
 <?php
-/**
+
+/*
  * CodeIgniter
  *
  * An open source application development framework for PHP
@@ -57,6 +58,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 	const CI_VERSION = '3.1.9';
 
+	//APPPATH =C:\Ampps\www\ci\ci-rolesPermisos\application\
+
 /*
  * ------------------------------------------------------
  *  Load the framework constants
@@ -69,6 +72,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	if (file_exists(APPPATH.'config/constants.php'))
 	{
+		//C:\Ampps\www\ci\ci-rolesPermisos\application\config\cosntants.php
 		require_once(APPPATH.'config/constants.php');
 	}
 

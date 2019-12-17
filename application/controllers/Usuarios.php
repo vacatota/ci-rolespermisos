@@ -15,7 +15,7 @@ class Usuarios extends CI_Controller
     public function index()
     {
 
-       
+
         $data = array(
             'usuarios' => $this->UsuariosModel->getUsuarios(),
         );
@@ -34,18 +34,21 @@ class Usuarios extends CI_Controller
     public function create()
     {
 
-        if ($this->form_validation->run('nuevoUsuario')) {
+        if ($this->form_validation->run('newUser')) {
             $data = $arrayName = array(
+                'cedula'   => $this->input->post('cedula'),
                 'nombres'   => $this->input->post('nombres'),
                 'apellidos' => $this->input->post('apellidos'),
                 'correo'    => $this->input->post('correo'),
                 'alias'   => $this->input->post('alias'),
-                'clave'   => md5($this->input->post('clave')),
+                'idRol'   => $this->input->post('idRol'),
+                'clave'   => md5($this->input->post('cedula')),
             );
-            $rol     = $this->input->post('rolId');
-            $lastId = $this->UsuariosModel->save($data);
-            if ($lastId) {
-                $this->UsuariosModel->addRol($lastId, $rol);
+
+            //$rolId     = $this->input->post('rolId');
+            $lastUserId = $this->UsuariosModel->createUserRol($data);
+            if ($lastUserId) {
+                $this->UsuariosModel->createRol($lastUserId, $rolId);
                  $this->session->set_flashdata('css', 'success');
                     $this->session->set_flashdata('mensaje', 'El usuario se ha creado con éxito');
                 redirect(base_url() . "usuarios");
@@ -55,7 +58,6 @@ class Usuarios extends CI_Controller
                 redirect(base_url() . "usuarios/list");
             }
         } else {
-            
             $this->layout->view("/usuarios/add");
         }
     }
@@ -64,10 +66,10 @@ class Usuarios extends CI_Controller
     public function edit($id_usuario)
     {
         $data = array(
-            'usuario'         => $this->UsuariosModel->get_usuario($id_usuario),
-            'roles'           => $this->UsuariosModel->get_roles(),
-            'funcionalidades' => $this->UsuariosModel->get_funcionalidades(),
-            'usuario_todo'    => $this->UsuariosModel->get_all_usuario($id_usuario),
+            'usuario'         => $this->UsuariosModel->getUsuario($id_usuario),
+            'roles'           => $this->UsuariosModel->getRoles(),
+            'funcionalidades' => $this->UsuariosModel->getFuncionalidades(),
+            //'funcionalidadesUsuario'    => $this->UsuariosModel->getFuncionalidadesUsuario($id_usuario),
         );
         $this->layout->view('/usuarios/edit', $data);
 

@@ -12,10 +12,11 @@ class Roles extends CI_Controller
         }
         $this->layout->setLayout("frontend");
     }
+
     public function index()
     {
         $data = array(
-            'roles' => $this->UsuariosModel->get_roles(),
+            'roles' => $this->UsuariosModel->getRoles(),
         );
 
         $this->layout->view('/roles/list', $data);
@@ -28,22 +29,32 @@ class Roles extends CI_Controller
 
     public function create()
     {
-        $data = $arrayName = array(
-            'rol' => $this->input->post('rol'),
-        );
-        if ($this->RolesModel->save($data)) {
-            redirect(base_url() . "roles");
-        } else {
-            redirect(base_url() . "roles/add");
-        }
+
+      if ($this->form_validation->run('newRol')) {
+            $data = array(
+              'nombre'   => $this->input->post('nombre'),
+              'empresaId'   => '1',
+          );
+          if ($this->RolesModel->createRol($data)) {
+               $this->session->set_flashdata('css', 'success');
+                  $this->session->set_flashdata('mensaje', 'El Rol se ha creado con éxito');
+              redirect(base_url() . "roles");
+          } else {
+               $this->session->set_flashdata('css', 'danger');
+                  $this->session->set_flashdata('mensaje', 'No se ha creado el Rol, intente nuevamente');
+              redirect(base_url() . "roles/list");
+          }
+      } else {
+          $this->layout->view("/roles/add");
+      }
     }
 
 /*Recibe un id, y del model trae una fila de un rol, retorna a la vista para editar*/
-    public function edit($id_rol)
+    public function edit($idRol)
     {
         $data = array(
-            'rol'       => $this->RolesModel->get_rol($id_rol),
-            'funciones' => $this->FuncionesModel->get_funciones(),
+            'rolFunciones'       => $this->RolesModel->getRol($idRol),
+            'funciones' => $this->FuncionesModel->getFunciones(),
         );
         $this->layout->view('/roles/edit', $data);
     }

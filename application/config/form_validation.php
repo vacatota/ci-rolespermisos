@@ -2,20 +2,20 @@
 /*** Reglas de validacion para formularios** */
 $config = array( // dentro de  este arreglo van las validaciones de los formularios
     /**reglas para el formulario add_formulario */
+        //trim.- Elimina espacios en blanco al incio y al final de los datos ingresados en un formulario o campo de form.
 
     /** VALIDAR INGRESO DE UN NUEVO USUARIO **/
-    'valida_nuevo_usuario'  => array
+    'newUser'  => array
     (
         array(
             'field' => 'nombres',
             'label' => 'Nombres', /*Nombre de la etiqueta que aparecerá en el mensaje*/
             'rules' => 'required|is_string|trim|min_length[3]|max_length[30]',
-        ), //trim.- Elimina espacios en blanco al incio y al final de los datos ingresados en un formulario o campo de form.
-
+        ),
         array(
             'field' => 'apellidos',
             'label' => 'Apellidos', /*Nombre de la etiqueta que aparecerá en el mensaje*/
-            'rules' => 'required|is_string|trim|min_length[3]|max_length[30]',
+            'rules' => 'required',
         ), //trim.- Elimina espacios en blanco al incio y al final de los datos ingresados en un formulario o campo de form.
 
         array(
@@ -28,7 +28,11 @@ $config = array( // dentro de  este arreglo van las validaciones de los formular
             'label' => 'Alias', /*Nombre de la etiqueta que aparecerá en el mensaje*/
             'rules' => 'required',
         ), //trim.- Elimina espacios en blanco al incio y al final de los datos ingresados en un formulario o campo de form.
-       
+       array(
+        'field' => 'idRol',
+        'label' => 'Rol', /*Nombre de la etiqueta que aparecerá en el mensaje*/
+        'rules' => 'required',
+         ),
     ),
 
     /** VALIDAR INGRESO DE UN NUEVO USUARIO **/
@@ -64,11 +68,11 @@ $config = array( // dentro de  este arreglo van las validaciones de los formular
         //),
     ),
     /** VALIDAR INGRESO DE UN NUEVO USUARIO **/
-    'valida_rol'            => array
+    'newRol'            => array
     (
         array(
-            'field' => 'rol',
-            'label' => 'Rol', /*Nombre de la etiqueta que aparecerá en el mensaje*/
+            'field' => 'nombre',
+            'label' => 'nombre Rol', /*Nombre de la etiqueta que aparecerá en el mensaje*/
             'rules' => 'required|is_string|trim|min_length[3]|max_length[30]',
         ), //trim.- Elimina espacios en blanco al incio y al final de los datos ingresados en un formulario o campo de form.
 

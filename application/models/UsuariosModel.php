@@ -1,17 +1,59 @@
+
 <?php
-defined('BASEPATH') or exit('No direct script access allowed');
+defined('BASEPATH') or exit('No se permite el acceso directo al script');
+//omprueba si existe la constante dada y está definida.
+// defined ( string $name ) : bool
+// "DEFINED APLICA UNICAMENTE PARA CONSTANTES";
+
 
 class UsuariosModel extends CI_Model
 {
 
-    public function save($data)
+    public function createUserRol($data)
     {
-        if ($this->db->insert("usuarios", $data)) {
-            return $this->db->insert_id();
-            //return true;
-        } else {
-            return false;
+      $idUsuario=0;
+$idRol= $data['idRol'];
+unset($data['idRol']);
+  $this->db->trans_begin();
+      $this->db->insert("usuarios", $data);
+        $idUsuario = $this->db->insert_id();
+
+        if($idUsuario>0){
+          $this->db->insert('rolesUsuarios', array(
+             'rolId' => $idRol,
+             'usuarioId' => $idUsuario,
+             //'fecha_registro' => date('Y-m-d H:i:s'),
+          ));
+          //Recuperamos el id del cliente registrado.
+          $idRolesUsuario = $this->db->insert_id();
+if ($idRolesUsuario) {
+   $this->db->trans_commit();
+   return true;
+}else{
+  $this->db->trans_rollback();
+  return false;
+}
+//
+// if ($this->db->trans_status()){
+//    //Todas las consultas se hicieron correctamente.
+//    $this->db->trans_commit();
+//    return true;
+// }else{
+//    //Hubo errores en la consulta, entonces se cancela la transacción.
+//    $this->db->trans_rollback();
+//    return false;
+// }
+
+
+
+
+
         }
+
+
+
+
+
     }
 
 
@@ -36,10 +78,10 @@ public function get_usuarios()
 
 
     /*Una vez creado un usuario se debe asignar un rol*/
-    public function addRol($usuarioId, $rolId)
+    public function createRol($userId, $rolId)
     {
         $this->db->set("rolId", $rolId);
-        $this->db->set("usuarioId", $usuarioId);
+        $this->db->set("usuarioId", $userId);
         $this->db->insert("rolesUsuarios");
 
     }
@@ -60,22 +102,26 @@ public function get_usuarios()
     }
 
 /*Retorna una fila con los datos de un usuario*/
-    public function get_usuario($id_usuario)
+    public function getUsuario($idUsuario)
     {
+
+
         $this->db->select('*');
         $this->db->from('usuarios u');
-        $this->db->where('u.id_usuario', $id_usuario);
-        $this->db->join('rolusuarios ru', 'u.id_usuario=ru.usuarios_id', 'left');
-        $this->db->join('roles r', 'r.id_rol=ru.roles_id', 'left');
+        $this->db->where('u.id', $idUsuario);
+        $this->db->join('rolesusuarios ru', 'u.id=ru.rolId', 'inner');
+        $this->db->join('roles r', 'r.id=ru.rolId', 'inner');
+        $this->db->join('funcionalidadesRolesUsuarios rf', 'rf.rolUsuarioId=ru.id', 'inner');
+        $this->db->join('funcionalidades f', 'f.id=rf.funcionalidadId', 'inner');
 //$this->db->where("id_padre", null);
         $resultados = $this->db->get();
-        //echo $this->db->last_query();
-        //exit();
-        return $resultados->row();
+       /* echo $this->db->last_query();
+        exit();*/
+        return $resultados->result();
     }
 
 /*Devuleve todos los roles q existe para editar a un usuario*/
-    public function get_roles()
+    public function getRoles()
     {
         $this->db->select('*');
         $this->db->from('roles');
@@ -84,13 +130,13 @@ public function get_usuarios()
     }
 
 /*Devuelve usuarios, roles, y funciones de un usuario*/
-    public function get_all_usuario($id_usuario)
+    public function getFuncionalidadesUsuario($id_usuario)
     {
         $this->db->select('*');
         $this->db->from('usuarios u');
         $this->db->join('rolusuarios ru', 'u.id_usuario=ru.usuarios_id', 'left');
         $this->db->join('roles r', 'r.id_rol=ru.roles_id', 'left');
-        $this->db->join('rolesfuncionalidad rf', 'ru.roles_id=rf.rol_usuario_id', 'left');
+        $this->db->join('funcionalidadesRolesUsuarios rf', 'ru.roles_id=rf.rol_usuario_id', 'left');
         $this->db->join('funcionalidades f', 'rf.funcionalidad_id=f.id_funcional', 'left');
         $this->db->where('ru.estado_rol', '1');
         $this->db->where('u.id_usuario', $id_usuario);
@@ -102,7 +148,7 @@ public function get_usuarios()
     }
 
 /*Devuleve todos los datos de la tabla funcionalidades*/
-    public function get_funcionalidades()
+    public function getFuncionalidades()
     {
         $this->db->select('*');
         $this->db->from('funcionalidades');

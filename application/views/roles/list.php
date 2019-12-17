@@ -17,12 +17,12 @@
     </section>
       <section class="content">
 
-    <div class="col-lg-6  col-md-6 col-sm-6 col-xs-12">
+    <div class="col-lg-6  col-md-6 col-sm-6 col-xs-10">
         <a href="<?php echo base_url() ?>roles/add" class="btn btn-primary btn-flat"><span class="fa fa-plus"></span> Agregar Rol</a>
     </div><br>
     <h1 class="text-center" style="color: #138bc7"><b>LISTADO DE ROLES</b></h1>
 <div class="row">
-                <div class="table-responsive col-md-12">
+                <div class="table-responsive col-md-10">
                     <table id="example1" class="table table-bordered table-hover table-condensed">
 
                             <thead style="background-color: #2c9bd2; align-text:center">
@@ -34,15 +34,18 @@
                             </thead>
                                 <tbody>
                                <?php
+
+
+//print_r($roles);
 $nro = 1;
 if (!empty($roles)) {
     foreach ($roles as $rol) {
         ?>
                                     <tr>
                                           <td style="text-align: center;"><?php echo $nro ?></td>
-                                          <td><?php echo $rol->rol; ?></td>
-                                    <td class="text-center"><a href="<?php echo base_url() . 'roles/edit/' . $rol->id_rol ?>" title="Permite editar un rol."><i class="fa fa-edit"></i></a></td>
-                                      <td class="text-center"><a href="usarios/delete/<?php echo $rol->id_rol ?>" title="Permite eliminar un rol."><i class="fa fa-trash"></i></a></td>
+                                          <td><?php echo $rol->nombre; ?></td>
+                                    <td class="text-center"><a href="<?php echo base_url() . 'roles/edit/' . $rol->id?>" title="Permite editar un rol."><i class="fa fa-edit"></i></a></td>
+                                      <td class="text-center"><a href="usarios/delete/<?php echo $rol->id?>" title="Permite eliminar un rol."><i class="fa fa-trash"></i></a></td>
                                     </tr> <?php
 $nro = $nro + 1;
     }

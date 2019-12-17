@@ -4,9 +4,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Roles && permisos</title>
-
-    
-
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -89,11 +86,11 @@
       </header>
 
         <?php
-          if($this->session->userdata('login')){
+          //if($this->session->userdata('login')){
         ?>
       <!-- Left side column. contains the logo and sidebar -->
       <aside class="main-sidebar">
-        <!-- sidebar: style can be found in sidebar.less -->       
+        <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
           <!-- Sidebar user panel -->
           <!-- sidebar menu: : style can be found in sidebar.less -->
@@ -144,7 +141,7 @@
           </ul>
         </section>
       </aside>
-      <?php } ?>
+      <?php //} ?>
 
 <!--############################ FIN  / aside -ok #################################-->
 <!--################### CONTENIDO PRINCIPAL   ################ -->
@@ -163,19 +160,14 @@ echo $content_for_layout;
         </div>
         <strong>Copyright &copy; 2015-2020 <a href="www.incanatoit.com">IncanatoIT</a>.</strong> All rights reserved.
       </footer>
-
-
     <!-- jQuery 2.1.4 -->
     <script src="<?php echo base_url() ?>public/lte/js/jQuery-2.1.4.min.js"></script>
     <!-- Bootstrap 3.3.5 -->
     <script src="<?php echo base_url() ?>public/js/bootstrap.min.js"></script>
     <!-- AdminLTE App -->
     <script src="<?php echo base_url() ?>public/lte/js/app.min.js"></script>
-
 <!-- Arbol ctas -->
-<script src="<?php echo base_url() ?>public/tree/js/file-explore.js"></script> 
-  </body>
-</html>
+<script src="<?php echo base_url() ?>public/tree/js/file-explore.js"></script>
 <script>
 $(document).ready(function() {
             $(".file-tree").filetree();
@@ -190,17 +182,13 @@ $(document).ready(function() {
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
-
-
-
 /*###################### TREE ####################*/
 //alert("ssfsd")
  //$("ul[class=file-tree]").click(function(){
   $("div ul li a[class=tree").click(function(){
   alert("Pulso en carpeta");
-}); 
-
-
-
+});
 
 </script>
+  </body>
+</html>

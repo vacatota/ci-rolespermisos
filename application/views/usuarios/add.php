@@ -40,44 +40,52 @@ if ($errors != "") //si errrors es distinto de vacio, entra a mpstrar lo del if
             </div>
            <form class="form-horizontal" method="POST" action=" <?php echo base_url(); ?>usuarios/create ">
               <div class="box-body">
+
+                <div class="form-group">
+                   <label for="" class="col-sm-2 control-label text-right">Cédula</label>
+                   <div class="col-sm-10">
+                     <input type="text" class="form-control" id="cedula" name="cedula" value="<?php echo set_value('cedula') ?>">
+                   </div>
+                 </div>
+
                <div class="form-group">
                   <label for="" class="col-sm-2 control-label text-right">Nombres</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="" name="nombres">
+                    <input type="text" class="form-control" id="" name="nombres" value="<?php echo set_value('nombres') ?>" >
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="" class="col-sm-2 control-label text-right">Apellidos</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="" name="apellidos">
+                    <input type="text" class="form-control" id="" name="apellidos" value="<?php echo set_value('apellidos') ?>">
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="" class="col-sm-2 control-label text-right">Correo</label>
 
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="" name="correo"></div>
+                    <input type="text" class="form-control" id="" name="correo" value="<?php echo set_value('correo') ?>"></div>
                 </div>
                  <div class="form-group">
                   <label for="" class="col-sm-2 control-label text-right">Alias</label>
 
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="" name="alias"></div>
+                    <input type="text" class="form-control" id="" name="alias" value="<?php echo set_value('alias') ?>"></div>
                 </div>
                 <div class="form-group">
                   <label for="" class="col-sm-2 control-label text-right">Seleccione rol</label>
 
                   <div class="col-sm-10">
-                    <div class="form-group"><!-- Select-->
-                            <select name="rolId" id="rolId" class="form-control">
+                   <!--  <div class="form-group"> --><!-- Select-->
+                            <select name="idRol" id="idRol" class="form-control">
                              <option>Seleccione un rol</option>
                              <?php foreach ($roles as $rol) {?>
-                                <option value="<?php echo $rol->id ?>">
+                                <option value="<?php echo $rol->id ?>" <?php echo set_select('rolUsuario', $rol->id)?>>
                                   <?php echo $rol->nombre ?>
                                 </option>
                              <?php }?>
                             </select>
-                </div> <!--// Select -->
+                <!-- </div> --> <!--// Select -->
                   </div>
                 </div>
 
