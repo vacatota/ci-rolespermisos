@@ -4,7 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class FuncionesModel extends CI_Model
 {
 
-    public function get_funciones()
+    public function getFuncionalidades()
     {
         $this->db->select('*');
         $this->db->from('funcionalidades');

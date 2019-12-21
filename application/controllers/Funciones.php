@@ -15,7 +15,7 @@ class Funciones extends CI_Controller
     public function index()
     {
         $data = array(
-            'funciones' => $this->FuncionesModel->get_funciones(),
+            'funciones' => $this->FuncionesModel->getFuncionalidades(),
         );
         $this->layout->view('/funciones/list', $data);
     }
