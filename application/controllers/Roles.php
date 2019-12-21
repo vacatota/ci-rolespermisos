@@ -53,28 +53,33 @@ class Roles extends CI_Controller
     public function edit($idRol)
     {
         $data = array(
-            'rolFunciones'       => $this->RolesModel->getRol($idRol),
-            'funciones' => $this->FuncionesModel->getFunciones(),
+            'rol'       => $this->RolesModel->getRol($idRol),
+            //'funciones' => $this->FuncionesModel->getFunciones(),
         );
         $this->layout->view('/roles/edit', $data);
     }
 
     public function update()
     {
-        $id_rol = $this->input->post('id_rol');
+        $idRol = $this->input->post('idRol');
         $data   = array(
-            'rol' => $this->input->post('rol'),
+            'nombre' => $this->input->post('nombre'),
         );
-        if ($this->RolesModel->update_rol($id_rol, $data)) {
+        if ($this->RolesModel->updateRol($idRol, $data)) {
+          $this->session->set_flashdata('css', 'success');
+             $this->session->set_flashdata('mensaje', 'El Rol se ha actualizado con éxito');
             redirect(base_url() . "roles");
         } else {
+          $this->session->set_flashdata('css', 'danger');
+             $this->session->set_flashdata('mensaje', 'Ocurrió un error, intente nuevamente');
             redirect(base_url() . "roles/add");
         }
     }
 
+
+
     public function add_funciones()
     {
-
         foreach ($_POST['funcion'] as $valor) {
             echo "<br>" . $valor;
         }

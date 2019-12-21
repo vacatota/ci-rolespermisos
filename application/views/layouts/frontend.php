@@ -189,6 +189,12 @@ $(document).ready(function() {
   alert("Pulso en carpeta");
 });
 
+function reloadPage(url){
+	setTimeout(function(){
+	window.location.href=url
+	},3000)
+}
+
 </script>
   </body>
 </html>

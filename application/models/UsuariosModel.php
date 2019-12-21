@@ -12,16 +12,16 @@ class UsuariosModel extends CI_Model
     public function createUserRol($data)
     {
       $idUsuario=0;
-$idRol= $data['idRol'];
+$rolId= $data['idRol'];
 unset($data['idRol']);
   $this->db->trans_begin();
       $this->db->insert("usuarios", $data);
-        $idUsuario = $this->db->insert_id();
+        $usuarioId = $this->db->insert_id();
 
-        if($idUsuario>0){
+        if($usuarioId>0){
           $this->db->insert('rolesUsuarios', array(
-             'rolId' => $idRol,
-             'usuarioId' => $idUsuario,
+             'rolId' => $rolId,
+             'usuarioId' => $usuarioId,
              //'fecha_registro' => date('Y-m-d H:i:s'),
           ));
           //Recuperamos el id del cliente registrado.
@@ -33,7 +33,6 @@ if ($idRolesUsuario) {
   $this->db->trans_rollback();
   return false;
 }
-//
 // if ($this->db->trans_status()){
 //    //Todas las consultas se hicieron correctamente.
 //    $this->db->trans_commit();
@@ -43,17 +42,7 @@ if ($idRolesUsuario) {
 //    $this->db->trans_rollback();
 //    return false;
 // }
-
-
-
-
-
         }
-
-
-
-
-
     }
 
 
@@ -62,6 +51,7 @@ public function get_usuarios()
 
         $this->db->where("estado", "1");
         $resultados = $this->db->get("usuarios");
+
         return $resultados->result();
     }
 
@@ -104,19 +94,17 @@ public function get_usuarios()
 /*Retorna una fila con los datos de un usuario*/
     public function getUsuario($idUsuario)
     {
-
-
         $this->db->select('*');
         $this->db->from('usuarios u');
         $this->db->where('u.id', $idUsuario);
-        $this->db->join('rolesusuarios ru', 'u.id=ru.rolId', 'inner');
+        $this->db->join('rolesusuarios ru', 'u.id=ru.usuarioId', 'inner');
         $this->db->join('roles r', 'r.id=ru.rolId', 'inner');
-        $this->db->join('funcionalidadesRolesUsuarios rf', 'rf.rolUsuarioId=ru.id', 'inner');
-        $this->db->join('funcionalidades f', 'f.id=rf.funcionalidadId', 'inner');
+        $this->db->join('funcionalidadesRolesUsuarios rf', 'rf.rolUsuarioId=ru.id', 'LEFT');
+        $this->db->join('funcionalidades f', 'f.id=rf.funcionalidadId', 'LEFT');
 //$this->db->where("id_padre", null);
         $resultados = $this->db->get();
-       /* echo $this->db->last_query();
-        exit();*/
+       // echo $this->db->last_query();
+       //  exit();
         return $resultados->result();
     }
 

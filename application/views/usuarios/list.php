@@ -53,6 +53,9 @@ if ($this->session->flashdata('mensaje') != '') {
                                 <tbody>
                                <?php
 $nro = 1;
+// echo "<pre>";
+// print_r($usuarios);
+// echo "</pre>";
 if (!empty($usuarios)) {
 
      foreach ($usuarios as $user) {
@@ -68,8 +71,8 @@ if (!empty($user->rolId)) {
             echo '<td style="color:red"><b>No tiene Rol</b></td>';
         }
         ?>
-                                    <td class="text-center"><a href="<?php echo base_url() . 'usuarios/edit/' . $user->id ?>" title="Permite editar datos de un usuario y adminitrar roles."><i class="fa fa-edit"></i></a></td>
-                                      <td><a href="usarios/delete/<?php echo $user->id ?>" title="Permite eliminar un usuario."><i class="fa fa-trash"></i></a></td>
+                                    <td class="text-center"><a href="<?php echo base_url() . 'usuarios/edit/' . $user->usuarioId ?>" title="Permite editar datos de un usuario y adminitrar roles."><i class="fa fa-edit"></i></a></td>
+                                      <td><a href="usarios/delete/<?php echo $user->usuarioId ?>" title="Permite eliminar un usuario."><i class="fa fa-trash"></i></a></td>
                                     </tr> <?php
 $nro = $nro + 1;
     }

@@ -34,6 +34,9 @@ class Usuarios extends CI_Controller
     public function create()
     {
 
+      print_r($_POST);
+      //exit();
+
         if ($this->form_validation->run('newUser')) {
             $data = $arrayName = array(
                 'cedula'   => $this->input->post('cedula'),
@@ -46,9 +49,9 @@ class Usuarios extends CI_Controller
             );
 
             //$rolId     = $this->input->post('rolId');
-            $lastUserId = $this->UsuariosModel->createUserRol($data);
-            if ($lastUserId) {
-                $this->UsuariosModel->createRol($lastUserId, $rolId);
+            $respuesta = $this->UsuariosModel->createUserRol($data);
+            if ($respuesta) {
+                //$this->UsuariosModel->createRol($lastUserId, $rolId);
                  $this->session->set_flashdata('css', 'success');
                     $this->session->set_flashdata('mensaje', 'El usuario se ha creado con éxito');
                 redirect(base_url() . "usuarios");

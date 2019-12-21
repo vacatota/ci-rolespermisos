@@ -16,6 +16,9 @@
       <hr style="padding: 0; margin: 0; border-top: solid 2px  #aeb5ba">
      <!-- ########### FIN DE BREADCRUMB ########################-->
     </section>
+|
+<?php
+    ?>
     <section class="content">
     <h1 class="text-center" style="color: #138bc7">Edición de usuario <b><?php echo $usuario[0]->nombres . ' ' . $usuario[0]->apellidos ?>  </b></h1>
       <div class="col-md-6">
@@ -25,12 +28,6 @@
                   <h3 class="box-title">Usuario registrado</h3>
                 </div>
 
-<?php
-// echo "<pre>";
-// print_r($usuario);
-// echo "</pre>";
-//exit();
-?>
         <form class="form-horizontal" method="POST" action=" <?php echo base_url(); ?>usuarios/update">
               <div class="box-body">
                 <div class="form-group">
@@ -78,7 +75,6 @@
                         </select>
                   </div>
                 </div>
-
               </div>
               <!-- /.box-body -->
               <div class="box-footer">
@@ -99,6 +95,7 @@
            <div class="form-group">
             <br>
 <?php
+
 $bandera=false;
 for ($i=0; $i < sizeof($funcionalidades) ; $i++) {
 

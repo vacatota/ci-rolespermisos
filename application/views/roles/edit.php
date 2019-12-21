@@ -30,8 +30,8 @@
                 <div class="form-group">
                       <label for="inputEmail3" class="col-sm-2 control-label text-right">Rol</label>
                       <div class="col-sm-10">
-                        <input type="hidden" name="id_rol" value="<?php echo $rol->id_rol ?>">
-                        <input type="text" class="form-control" name="rol" id="inputEmail3" value="<?php echo $rol->rol ?>" >
+                        <input type="hidden" name="idRol" value="<?php echo $rol->id ?>">
+                        <input type="text" class="form-control" name="nombre" id="inputEmail3" value="<?php echo $rol->nombre ?>" >
                       </div>
                 </div>
 
@@ -50,14 +50,14 @@
                   <h4 class="text-center"><b>Seleccione las funcionalidades que desea agregar</b></h4>
 <div class="box-body">
 <?php
-foreach ($funciones as $funcion) {
-
-    echo "<p style='display:inline'><input type='checkbox' name='funcion[] value='" . $funcion->id_funcional . "'>-" . $funcion->funcionalidad . "</p>  <b> | </b> ";
-}
+// foreach ($funciones as $funcion) {
+//
+//     echo "<p style='display:inline'><input type='checkbox' name='funcion[] value='" . $funcion->id_funcional . "'>-" . $funcion->funcionalidad . "</p>  <b> | </b> ";
+// }
 ?>
 
 <div class="box-footer">
-                <button type="submit" class="btn btn-info pull-right" title="Agrega funciones al rol: <?php echo $rol->rol ?> "><b>Agregar funciones</b></button>
+                <button type="submit" class="btn btn-info pull-right" title="Agrega funciones al rol: <?php //echo $rol->rol ?> "><b>Agregar funciones</b></button>
               </div>
 
             </form>

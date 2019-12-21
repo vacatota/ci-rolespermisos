@@ -38,11 +38,11 @@ class Funciones extends CI_Controller
     }
 
 /*Recibe un id, y del model trae una fila de un rol, retorna a la vista para editar*/
-    public function edit($id_rol)
+    public function edit($idRol)
     {
         $data = array(
-            'rol'       => $this->RolesModel->get_rol($id_rol),
-            'funciones' => $this->FuncionesModel->get_funciones(),
+            'rol'       => $this->RolesModel->getRol($idRol),
+            //'funciones' => $this->FuncionesModel->get_funciones(),
         );
         $this->layout->view('/roles/edit', $data);
     }

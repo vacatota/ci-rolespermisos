@@ -15,7 +15,7 @@ class RolesModel extends CI_Model
 
     public function getRol($idRol)
     {
-        $this->db->where("id_rol", $idRol);
+        $this->db->where("id", $idRol);
         $resultado = $this->db->get("roles");
         return $resultado->row();
 
@@ -45,10 +45,11 @@ class RolesModel extends CI_Model
       return $resultados->result();
 
     }
+
 /*Actualiza un rol de la tabla roles*/
-    public function update_rol($id_rol, $data)
+    public function updateRol($idRol, $data)
     {
-        $this->db->where("id_rol", $id_rol);
+        $this->db->where("id", $idRol);
         if ($this->db->update("roles", $data)) {
             return true;
         } else {
