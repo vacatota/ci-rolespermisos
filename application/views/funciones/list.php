@@ -40,9 +40,9 @@ if (!empty($funciones)) {
         ?>
                                     <tr>
                                           <td style="text-align: center;"><?php echo $nro ?></td>
-                                          <td><?php echo $funcion->funcionalidad; ?></td>
-                                    <td class="text-center"><a href="<?php echo base_url() . 'roles/edit/' . $funcion->id_funcional ?>" title="Permite editar un rol."><i class="fa fa-edit"></i></a></td>
-                                      <td class="text-center"><a href="usarios/delete/<?php echo $funcion->id_funcional ?>" title="Permite eliminar un rol."><i class="fa fa-trash"></i></a></td>
+                                          <td><?php echo $funcion->nombre; ?></td>
+                                    <td class="text-center"><a href="<?php echo base_url() . 'roles/edit/' . $funcion->id ?>" title="Permite editar un rol."><i class="fa fa-edit"></i></a></td>
+                                      <td class="text-center"><a href="usarios/delete/<?php echo $funcion->id ?>" title="Permite eliminar un rol."><i class="fa fa-trash"></i></a></td>
                                     </tr> <?php
 $nro = $nro + 1;
     }
