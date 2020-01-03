@@ -12,8 +12,8 @@ class SessionModel extends CI_Model
         $this->db->where("alias", $username);
         $this->db->where("clave", $password);
         $resultados = $this->db->get();
-       /*   echo $this->db->last_query();
-        exit();*/
+         echo $this->db->last_query();
+         exit();
         if ($resultados->num_rows() > 0) {
         return $resultados->row();
         } else {
@@ -21,6 +21,6 @@ class SessionModel extends CI_Model
         }
     }
 
-    
+
 
 }

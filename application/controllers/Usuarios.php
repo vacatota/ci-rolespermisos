@@ -34,7 +34,7 @@ class Usuarios extends CI_Controller
     public function create()
     {
 
-      print_r($_POST);
+      //print_r($_POST);
       //exit();
 
         if ($this->form_validation->run('newUser')) {
@@ -45,7 +45,7 @@ class Usuarios extends CI_Controller
                 'correo'    => $this->input->post('correo'),
                 'alias'   => $this->input->post('alias'),
                 'idRol'   => $this->input->post('idRol'),
-                'clave'   => md5($this->input->post('cedula')),
+                'clave'   => sha1($this->input->post('cedula')),
             );
 
             //$rolId     = $this->input->post('rolId');
@@ -110,4 +110,18 @@ class Usuarios extends CI_Controller
         }
     }
 
+
+public function delete($idUsuario){
+  $respuesta = $this->UsuariosModel->deleteUsuario($idUsuario);
+  if ($respuesta) {
+      //$this->UsuariosModel->createRol($lastUserId, $rolId);
+       $this->session->set_flashdata('css', 'success');
+          $this->session->set_flashdata('mensaje', 'El usuario se ha eliminado con éxito');
+      redirect(base_url() . "usuarios");
+  } else {
+       $this->session->set_flashdata('css', 'danger');
+          $this->session->set_flashdata('mensaje', 'No se ha eliminado el usuario, intente nuevamente');
+      redirect(base_url() . "usuarios");
+  }
+}
 }

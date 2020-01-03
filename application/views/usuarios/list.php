@@ -46,12 +46,28 @@
                      </div>
                      <!-- /.box-header -->
 <hr style="border:1px solid  #bfc9ca; margin:0">
-
-
           <div class="box-body">
+
+            <!--Muestra mensajes del resultado de las consultas a Bd -->
+                    <?php
+          if ($this->session->flashdata('mensaje') != '') {
+            ?>
+                     <div id="mensajeConfirm"   style="width: 50%" class="center-block text-center alert alert-<?php echo $this->session->flashdata('css') ?>">
+                      <?php echo $this->session->flashdata('mensaje') ?></div>
+                    <?php
+            echo "<script>
+              window.onload = function() {
+              reloadPage()
+                     }
+             </script>";
+          }
+          ?>
+          <!--Fin mensajes del resultado de las consultas a Bd -->
+
             <div class="row">
+                 <input class="form-control" id="buscar" type="text" placeholder="Buscar..">
                             <div class="table-responsive col-md-12">
-                                <table id="example1" class="table table-bordered table-hover table-condensed">
+                                <table id="dataTable" class="table table-bordered table-hover table-condensed">
 
                                         <thead style="background-color: #2c9bd2; align-text:center">
                                             <tr>
@@ -84,7 +100,7 @@
                     }
                     ?>
                                                 <td class="text-center"><a href="<?php echo base_url() . 'usuarios/edit/' . $user->usuarioId ?>" title="Permite editar datos de un usuario y adminitrar roles."><i class="fa fa-edit"></i></a></td>
-                                                  <td><a href="usarios/delete/<?php echo $user->usuarioId ?>" title="Permite eliminar un usuario."><i class="fa fa-trash"></i></a></td>
+                                                  <td><a onclick=eliminar("<?php echo base_url()?>usuarios/delete/<?php echo $user->usuarioId ?>") title="Permite eliminar un usuario."><i class="fa fa-trash"></i></a></td>
                                                 </tr> <?php
             $nro = $nro + 1;
                 }
@@ -100,3 +116,27 @@
     </div><!-- /.row -->
   </section><!-- /.content -->
 </div><!--FIN CONTENIDO PARA VISTA /.content-wrapper -->
+<script>
+function eliminar(url){
+    if(confirm('Esta seguro que desea eliminar este registro?')){
+        window.location=url;
+    }
+}
+
+function reloadPage(){
+	setTimeout(function(){
+	//window.location.href=url;
+$("#mensajeConfirm").remove()},3000)
+}
+
+
+
+$(document).ready(function(){
+  $("#buscar").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#dataTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>

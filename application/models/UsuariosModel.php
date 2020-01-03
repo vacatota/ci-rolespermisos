@@ -156,4 +156,9 @@ public function get_usuarios()
         }
     }
 
+    public function deleteUsuario($idUsuario){
+      $this->db->where("id", $idUsuario);
+      return $this->db->delete("usuarios");
+    }
+
 }

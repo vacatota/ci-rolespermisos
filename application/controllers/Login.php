@@ -1,24 +1,33 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Session extends CI_Controller
+class Login extends CI_Controller
 {
-
     public function __construct()
     {
         parent::__construct();
-        $this->layout->setLayout("frontend");
-        //$this->load->model("SessionModel");
-        $this->load->library("session");
+        // $this->layout->setLayout("frontend");
+
+        // if (!$this->session->userdata('login')) {
+        //  redirect(base_url('login'));
+        // }
+         //$this->load->model("SessionModel");
+
     }
+
     public function index()
-    {         
-        $this->layout->view('/login/login');
+    {
+        if ($this->session->userdata("login")) {
+        redirect(base_url('dashboard'));
+      } else {
+          $this->load->view("login/index");
+      }
     }
+
 
     public function login()
     {
-        $username = $this->input->post("usuario");
+          $username = $this->input->post("usuario");
         $password = $this->input->post("clave");
         $objeto   = $this->SessionModel->acceder($username, MD5($password));
         if ($objeto) {
@@ -32,17 +41,19 @@ class Session extends CI_Controller
                 'login'     => true,
             );
             $this->session->set_userdata($dataUSer);
-            redirect(base_url() . "usuarios");
+            redirect(base_url() . "dashboard");
         } else {
             $this->session->set_flashdata("error", "Usuario / clave incorrectos");
-            redirect(base_url());
+            redirect(base_url('login'));
         }
     }
 
     public function logout()
     {
-        $this->session->sess_destroy();
-        header("Location:" . base_url());
+              $this->session->sess_destroy();
+
+       header("Location:" . base_url());
+
     }
 
 }

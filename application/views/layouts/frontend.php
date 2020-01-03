@@ -73,7 +73,7 @@
                   <li class="user-footer">
 
                     <div class="pull-right">
-                      <a href="session/logout" class="btn btn-default btn-flat" style="background-color:  #191c1e; color:white">Salir</a>
+                      <a href="Login/logout" class="btn btn-default btn-flat" style="background-color:  #191c1e; color:white">Salir</a>
                     </div>
                   </li>
                 </ul>
@@ -168,6 +168,8 @@ echo $content_for_layout;
     <script src="<?php echo base_url() ?>public/lte/js/app.min.js"></script>
 <!-- Arbol ctas -->
 <script src="<?php echo base_url() ?>public/tree/js/file-explore.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
 <script>
 $(document).ready(function() {
             $(".file-tree").filetree();
@@ -188,12 +190,6 @@ $(document).ready(function() {
   $("div ul li a[class=tree").click(function(){
   alert("Pulso en carpeta");
 });
-
-function reloadPage(url){
-	setTimeout(function(){
-	window.location.href=url
-	},3000)
-}
 
 </script>
   </body>
