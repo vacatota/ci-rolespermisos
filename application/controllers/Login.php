@@ -28,8 +28,9 @@ class Login extends CI_Controller
     public function login()
     {
           $username = $this->input->post("usuario");
-        $password = $this->input->post("clave");
-        $objeto   = $this->SessionModel->acceder($username, MD5($password));
+        $password = md5($this->input->post("clave"));
+
+              $objeto   = $this->SessionModel->acceder($username, $password);
         if ($objeto) {
             //Si existe usuario, creamos el arreglo para la session
             $dataUSer = array(
@@ -46,6 +47,7 @@ class Login extends CI_Controller
             $this->session->set_flashdata("error", "Usuario / clave incorrectos");
             redirect(base_url('login'));
         }
+        
     }
 
     public function logout()

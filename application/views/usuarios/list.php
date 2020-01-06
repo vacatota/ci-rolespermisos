@@ -65,7 +65,12 @@
           <!--Fin mensajes del resultado de las consultas a Bd -->
 
             <div class="row">
+              <div class="form-group">
+                 <div class="col-sm-12">
                  <input class="form-control" id="buscar" type="text" placeholder="Buscar..">
+               </div>
+               </div>
+               <br>
                             <div class="table-responsive col-md-12">
                                 <table id="dataTable" class="table table-bordered table-hover table-condensed">
 
@@ -128,15 +133,4 @@ function reloadPage(){
 	//window.location.href=url;
 $("#mensajeConfirm").remove()},3000)
 }
-
-
-
-$(document).ready(function(){
-  $("#buscar").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $("#dataTable tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
-  });
-});
 </script>

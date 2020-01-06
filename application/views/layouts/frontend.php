@@ -191,6 +191,17 @@ $(document).ready(function() {
   alert("Pulso en carpeta");
 });
 
+
+$(document).ready(function(){
+  $("#buscar").on("keyup", function() {
+    //alert('sdsds');
+
+    var value = $(this).val().toLowerCase();
+    $("#dataTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
 </script>
   </body>
 </html>

@@ -26,7 +26,7 @@
 					<input type="text" class="form-control" name="usuario" placeholder="Ingrese su nombre">
 				</div>
 				<div class="form-group">
-					<input type="calve" name="calve" class="form-control" placeholder="Ingrese su clave">
+					<input type="password" name="clave" class="form-control" placeholder="Ingrese su clave">
 				</div>
 				<button type="submit" class="btn"><i class="fas fa-sign-in-alt"></i>Acceder</button>
 			</form>
