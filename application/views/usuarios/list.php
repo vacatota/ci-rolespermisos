@@ -112,6 +112,23 @@
             }?>
                               </tbody>
                           </table>
+                          <ul class="pagination">
+                            <li>
+                              <a href="#">&laquo;</a>
+                            </li>
+                            <li class="active">
+                              <a href="#">1</a>
+                            </li>
+                            <li class="disable">
+                              <a href="#">2</a>
+                            </li>
+                            <li class="disable">
+                              <a href="#">3</a>
+                            </li>
+                            <li>
+                              <a href="#">&raquo;</a>
+                            </li>
+                          </ul>
                       </div>
                     </div><!-- fin row -->
            </div> <!-- fin box-body -->
