@@ -89,7 +89,14 @@
             // echo "<pre>";
             // print_r($usuarios);
             // echo "</pre>";
-            if (!empty($usuarios)) {
+            $nRegPagina=3;
+             $total= count($usuarios);
+             $paginas=  ceil($total/$nRegPagina);
+            if(!$_GET){
+              header('Location:usuarios?pagina=1');
+            }
+//$_GET['pagina']=0;
+                      if (!empty($usuarios)) {
 
                  foreach ($usuarios as $user) {
                     ?>
@@ -113,20 +120,16 @@
                               </tbody>
                           </table>
                           <ul class="pagination">
-                            <li>
-                              <a href="#">&laquo;</a>
+                            <li class="<?php echo $_GET['pagina']<=1 ? 'disabled':''?>">
+                              <a href="<?php echo base_url('usuarios')?>?pagina=<?php echo $_GET['pagina']-1?>">Anterior</a>
                             </li>
-                            <li class="active">
-                              <a href="#">1</a>
+                            <?php for($i=0; $i<$paginas;$i++ ){ ?>
+                            <li class="<?php echo $_GET['pagina']==$i+1 ? 'active':''; ?>" >
+                              <a href=" <?php echo base_url('usuarios')?>?pagina=<?php echo $i+1?>"><?php echo $i+1?></a>
                             </li>
-                            <li class="disable">
-                              <a href="#">2</a>
-                            </li>
-                            <li class="disable">
-                              <a href="#">3</a>
-                            </li>
-                            <li>
-                              <a href="#">&raquo;</a>
+<?php } ?>
+                            <li class="<?php echo $_GET['pagina']>=$paginas ? 'disabled':''?>">
+                              <a href="<?php echo base_url('usuarios')?>?pagina=<?php echo $_GET['pagina']+1?>">Siguiente</a>
                             </li>
                           </ul>
                       </div>
