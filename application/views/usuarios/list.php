@@ -89,13 +89,12 @@
             // echo "<pre>";
             // print_r($usuarios);
             // echo "</pre>";
-            $nRegPagina=3;
-             $total= count($usuarios);
-             $paginas=  ceil($total/$nRegPagina);
+            //$nRegPagina=3;
+             //$total= count($usuarios);
+             //$paginas=  ceil($total/$nRegPagina);
             if(!$_GET){
               header('Location:usuarios?pagina=1');
             }
-//$_GET['pagina']=0;
                       if (!empty($usuarios)) {
 
                  foreach ($usuarios as $user) {
@@ -111,8 +110,8 @@
                         echo '<td style="color:red"><b>No tiene Rol</b></td>';
                     }
                     ?>
-                                                <td class="text-center"><a href="<?php echo base_url() . 'usuarios/edit/' . $user->usuarioId ?>" title="Permite editar datos de un usuario y adminitrar roles."><i class="fa fa-edit"></i></a></td>
-                                                  <td><a onclick=eliminar("<?php echo base_url()?>usuarios/delete/<?php echo $user->usuarioId ?>") title="Permite eliminar un usuario."><i class="fa fa-trash"></i></a></td>
+                                                <!-- <td class="text-center"><a href="<?php //echo base_url() . 'usuarios/edit/' . $user->usuarioId ?>" title="Permite editar datos de un usuario y adminitrar roles."><i class="fa fa-edit"></i></a></td>
+                                                  <td><a onclick=eliminar("<?php //echo base_url()?>usuarios/delete/<?php //echo $user->usuarioId ?>") title="Permite eliminar un usuario."><i class="fa fa-trash"></i></a></td> -->
                                                 </tr> <?php
             $nro = $nro + 1;
                 }

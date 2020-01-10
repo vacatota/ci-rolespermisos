@@ -91,6 +91,14 @@ public function get_usuarios()
         return $resultados->result();
     }
 
+
+    public function getUsuariosPaginacion($limit, $offset){
+      $sql= $this->db->get('usuarios', $limit, $offset);
+      
+      return $sql->result();
+
+    }
+
 /*Retorna una fila con los datos de un usuario*/
     public function getUsuario($idUsuario)
     {

@@ -12,14 +12,23 @@ class Usuarios extends CI_Controller
         }
         $this->layout->setLayout("frontend");
     }
-    public function index()
-    {
+    public function index(){
+      //$offset
+      $registrosPorPagina=3;
+$nroPagina = $_GET['pagina'];
+if($nroPagina==1){
+  $offset=0;
+}else{
+  $offset=(($registrosPorPagina*$nroPagina)-($nroPagina+1));
+}
 
-
+$totalData=$this->UsuariosModel->getUsuarios();
         $data = array(
-            'usuarios' => $this->UsuariosModel->getUsuarios(),
+            'usuarios' => $this->UsuariosModel->getUsuariosPaginacion($registrosPorPagina, $offset),
+            'nRegPagina' => $registrosPorPagina,
+            'paginas' =>(count($totalData)/$registrosPorPagina),
         );
-
+$totalData=$this->UsuariosModel->getUsuarios();
         $this->layout->view('/usuarios/list', $data);
     }
 
