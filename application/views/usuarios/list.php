@@ -118,9 +118,9 @@
             }?>
                               </tbody>
                           </table>
-                          <ul class="pagination">
+                          <ul class="pagination pull-right">
                             <li class="<?php echo $_GET['pagina']<=1 ? 'disabled':''?>">
-                              <a href="<?php echo base_url('usuarios')?>?pagina=<?php echo $_GET['pagina']-1?>">Anterior</a>
+                              <a href="<?php echo base_url('usuarios')?>?pagina=<?php echo $_GET['pagina']-1?>">Ant.</a>
                             </li>
                             <?php for($i=0; $i<$paginas;$i++ ){ ?>
                             <li class="<?php echo $_GET['pagina']==$i+1 ? 'active':''; ?>" >
@@ -128,7 +128,7 @@
                             </li>
 <?php } ?>
                             <li class="<?php echo $_GET['pagina']>=$paginas ? 'disabled':''?>">
-                              <a href="<?php echo base_url('usuarios')?>?pagina=<?php echo $_GET['pagina']+1?>">Siguiente</a>
+                              <a href="<?php echo base_url('usuarios')?>?pagina=<?php echo $_GET['pagina']+1?>">Sig.</a>
                             </li>
                           </ul>
                       </div>

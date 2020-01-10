@@ -81,10 +81,10 @@ public function get_usuarios()
     {
         $this->db->select('*');
         $this->db->from('usuarios u');
-        $this->db->join('rolesUsuarios ru', 'u.id=ru.usuarioId', 'inner');
-        $this->db->join('roles r', 'r.id=ru.rolId', 'inner');
+        //$this->db->join('rolesUsuarios ru', 'u.id=ru.usuarioId', 'inner');
+        //$this->db->join('roles r', 'r.id=ru.rolId', 'inner');
         //$this->db->where('ru.estado_rol', '1');
-        $this->db->order_by("u.id", "desc");
+        //$this->db->order_by("u.id", "desc");
         $resultados = $this->db->get();
        /* echo $this->db->last_query();
         exit();*/
@@ -93,10 +93,8 @@ public function get_usuarios()
 
 
     public function getUsuariosPaginacion($limit, $offset){
-      $sql= $this->db->get('usuarios', $limit, $offset);
-      
-      return $sql->result();
-
+          $sql= $this->db->get('usuarios', $limit, $offset);
+          return $sql->result();
     }
 
 /*Retorna una fila con los datos de un usuario*/
